@@ -1,0 +1,8 @@
+Assignment 5 Roles:
+
+Samuel Kim:
+Worked and debugged on the macros for the new object and location. 
+
+Edgar Lau:
+
+Cyrus Wu:
