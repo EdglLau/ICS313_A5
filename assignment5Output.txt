@@ -1,0 +1,80 @@
+CL-USER 1 > (game-repl)
+look
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going north from here. You see a whiskey on the floor. You see a bucket on the floor. You see a starpiece1 on the floor.
+pickup whiskey
+You are now carrying the whiskey
+pickup bucket
+You are now carrying the bucket
+pickup starpiece1
+You are now carrying the starpiece1
+walk north
+You are in the kitchen. There is a cake in front of you. There is a door going south from here. You see a broom on the floor. You see a cake on the floor. You see a starpiece3 on the floor.
+pickup broom
+You are now carrying the broom
+pickup cake
+You are now carrying the cake
+pickup starpiece3
+You are now carrying the starpiece3
+ walk south
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going north from here.
+walk west
+You are in a beautiful garden. There is a well in front of you. There is a door going east from here. You see a frog on the floor. You see a starpiece2 on the floor. You see a chain on the floor.
+pickup starpiece2
+You are now carrying the starpiece2
+pickup chain
+You are now carrying the chain
+weld chain bucket
+I cant weld like that.
+walk east
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going north from here.
+ladder upstairs
+I do not know that command.
+walk upstairs
+You are in the attic. There is a giant welding torch in the corner. There is a ladder going downstairs from here.
+weld chain bucket
+The chain is now securely welded to the bucket.
+star-power starpiece1 starpiece 2
+I do not know that command.
+power starpiece1 starpiece2
+The star has been formed and is giving full power.
+walk downstairs
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going north from here.
+walk west
+You are in a beautiful garden. There is a well in front of you. There is a door going east from here. You see a frog on the floor.
+dunk bucket well
+The bucket is now full of water
+walk east
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going north from here.
+splash bucket wizard
+The wizard awakens from his slumber and greets you warmly. He hands you the magic low-carb donut- you win! The end.
+quit
+NIL
+
+CL-USER 2 > (game-repl)
+look
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going north from here.
+walk west
+You are in a beautiful garden. There is a well in front of you. There is a door going east from here. You see a frog on the floor.
+walk east
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going north from here.
+walk north
+You are in the kitchen. There is a cake in front of you. There is a door going south from here.
+walk south
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going north from here.
+walk west
+You are in a beautiful garden. There is a well in front of you. There is a door going east from here. You see a frog on the floor.
+pickup frog
+You are now carrying the frog
+walk east
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going north from here.
+splash bucket wizard
+The wizard awakens and sees that you stole his frog. He is so upset he banishes you to the netherworlds- you lose! The end.
+
+CL-USER 3 > (new-object spoon kitchen)
+((SPOON KITCHEN) (FROG BODY) (CHAIN BODY) (STARPIECE2 BODY) (STARPIECE3 BODY) (CAKE BODY) (BROOM BODY) (STARPIECE1 BODY) (BUCKET BODY) (WHISKEY BODY) (BROOM KITCHEN) (WHISKEY LIVING-ROOM) (BUCKET LIVING-ROOM) (STARPIECE1 LIVING-ROOM) (CHAIN GARDEN) (FROG GARDEN) (STARPIECE2 GARDEN) (CAKE KITCHEN) (STARPIECE3 KITCHEN) (STARPIECE4 ATTIC))
+
+CL-USER 4 > (new-location basement You are now in the basement. What secrets lie beneath?)
+((BASEMENT (YOU ARE NOW IN THE BASEMENT. WHAT SECRETS LIE BENEATH?)) (BEDROOM (YOU ARE NOW IN THE BEDROOM. EVERY WIZARD NEEDS HIS SLEEP.)) (LIVING-ROOM (YOU ARE IN THE LIVING-ROOM. A WIZARD IS SNORING LOUDLY ON THE COUCH.)) (GARDEN (YOU ARE IN A BEAUTIFUL GARDEN. THERE IS A WELL IN FRONT OF YOU.)) (ATTIC (YOU ARE IN THE ATTIC. THERE IS A GIANT WELDING TORCH IN THE CORNER.)) (KITCHEN (YOU ARE IN THE KITCHEN. THERE IS A CAKE IN FRONT OF YOU.)))
+
+CL-USER 5 > (new-path kitchen basement down passageway)
+((BASEMENT DOWN PASSAGEWAY) (LIVING-ROOM SOUTH DOOR))
