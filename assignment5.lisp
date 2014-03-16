@@ -265,7 +265,7 @@
                         '(the bucket is now full of water))
                '(the water level is too low to reach.)))
 
-; uses the game-action macro to determine the outcome of the game.
+; Uses the game-action macro to determine the outcome of the game.
 (game-action splash bucket wizard living-room
              (cond ((not *bucket-filled*) '(the bucket has nothing in it.))
                    ((have 'frog) '(the wizard awakens and sees that you stole his frog. 
