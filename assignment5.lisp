@@ -248,7 +248,7 @@
 ; sets the combined piece using the pieces from the previous assignment
 (defparameter *star-power* nil)
 
-; uses the game-action macro to combine the star pieces inot one object
+; uses the game-action macro to combine the star pieces into one object
 (game-action power starpiece1 starpiece2 attic
              (if (and (have 'starpiece1) (not *star-power*))
                  (progn (setf *star-power* 't)
