@@ -1,5 +1,5 @@
 ;;; -*- Mode: LISP; Syntax: Common-lisp; Package: USER; Base: 10 -*-
-;;; Name: Samuel Kim                    Date:03/08/13
+;;; Name: Samuel Kim, Edgar Lau, Cyrus Wu         Date:03/18/14
 ;;; Course: ICS313        Assignment: 5   
 ;;; File: samueldj5.lisp
 
@@ -11,7 +11,7 @@
                         (attic (you are in the attic.
                             there is a giant welding torch in the corner.))
                         (kitchen (you are in the kitchen. 
-                            There is a cake in front of you.))))
+                            There is a platter in front of you.))))
 
 ; This function describes the location.
 (defun describe-location (location nodes)
@@ -196,6 +196,7 @@
 
 ; Adding a new location in to test                                     
 (new-location bedroom You are now in the bedroom. Every wizard needs his sleep.)
+(new-location outside You have jumped out the window and died. The end.)
 
 ; New implementation of new-path macro
 ;     We only need the following args:
@@ -213,16 +214,22 @@
     (t(progn
         (if (equal ',direction-back "unable")
             nil
-          ;now we need to test to see if the destination is already there       
+            ;now we need to test to see if the destination is already there       
           (cond
            ((our-member ',destination *edges*)
             (pushnew '(,origin ,direction-back ,path)
                  (cdr (assoc ',destination *edges*))))
            (t (pushnew '(,destination
                           (,origin ,direction-back ,path)) *edges*))))
+
           ; add new location/direction/path to origin's list of edges           
         (pushnew '(,destination ,direction ,path)
                  (cdr (assoc ',origin *edges*)))))))
+
+;Add paths to the new location
+;(new-path living-room bedroom east door west)
+(new-path living-room bedroom east door west)
+(new-path attic outside outside window "unable")
 
 ; sets the game-action macro to run different commands inside the game-repl
 (defmacro game-action (command subj obj place &body body)
@@ -248,7 +255,7 @@
 ; sets the combined piece using the pieces from the previous assignment
 (defparameter *star-power* nil)
 
-; uses the game-action macro to combine the star pieces inot one object
+; uses the game-action macro to combine the star pieces into one object
 (game-action power starpiece1 starpiece2 attic
              (if (and (have 'starpiece1) (not *star-power*))
                  (progn (setf *star-power* 't)
@@ -265,7 +272,7 @@
                         '(the bucket is now full of water))
                '(the water level is too low to reach.)))
 
-; Uses the game-action macro to determine the outcome of the game.
+; uses the game-action macro to determine the outcome of the game.
 (game-action splash bucket wizard living-room
              (cond ((not *bucket-filled*) '(the bucket has nothing in it.))
                    ((have 'frog) '(the wizard awakens and sees that you stole his frog. 
