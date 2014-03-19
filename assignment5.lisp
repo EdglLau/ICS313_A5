@@ -224,7 +224,7 @@
 
           ; add new location/direction/path to origin's list of edges           
         (pushnew '(,destination ,direction ,path)
-                 (cdr (assoc ',origin *edges*)) :test 'equals)))))
+                 (cdr (assoc ',origin *edges*)) :test 'equal)))))
 
 ; Add paths to the new location
 (new-path living-room bedroom east door west)
