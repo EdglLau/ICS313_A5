@@ -93,15 +93,15 @@
 (defun have (object)
     (member object (cdr (inventory))))
     
-; help function - print available commands                                  
+; This function prints all available commands in the Wizard's World.                                   
 (defun help ()
   `(you can use one of the following commands- ,@*allowed-commands*))
 
-; alias to help, just lets user call help with "h" instead                  
+; Alias to help, just lets user call help with "h" instead                  
 (defun h ()
   (help))
 
-; alias to help, just lets user call help with "?" instead                  
+; Alias to help, just lets user call help with "?" instead                  
 (defun ? ()
   (help))
 
@@ -116,7 +116,7 @@
 
 
 ; This is a function from Dr. Reed's samples
-;modified for objects
+; modified for objects
 (defun our-member-obj (obj lst)
   (if (null lst)
       nil
@@ -171,8 +171,8 @@
     (fresh-line))
 ;;;==========================Macros===============================;;;           
 
-; macro for new objects, need to push to *objects* and                      
-;     to the *object-location*                                                  
+; Macro for new objects, need to push to *objects* and                      
+; to the *object-location*                                                  
 (defmacro new-object (object location)
   `(progn
      (cond
@@ -187,7 +187,7 @@
 (new-object broom kitchen)
 
 ; Main macro for the new locations in game. We need to push a               
-;     new node with name and description.                                       
+; new node with name and description.                                       
 (defmacro new-location (object &body body)
   `(cond
    ((not (our-member ',object *nodes*))
@@ -199,9 +199,9 @@
 (new-location outside You have jumped out the window and died. The end.)
 
 ; New implementation of new-path macro
-;     We only need the following args:
-;     origin, destination, direction, path
-;     Optional arg: direction-back
+; We only need the following args:
+; origin, destination, direction, path
+; Optional arg: direction-back
 (defmacro new-path (origin destination direction path &optional (direction-back "unable"))
   `(cond
     ((or
@@ -226,12 +226,11 @@
         (pushnew '(,destination ,direction ,path)
                  (cdr (assoc ',origin *edges*)))))))
 
-;Add paths to the new location
-;(new-path living-room bedroom east door west)
+; Add paths to the new location
 (new-path living-room bedroom east door west)
 (new-path attic outside outside window "unable")
 
-; sets the game-action macro to run different commands inside the game-repl
+; Macro to run different commands inside the game-repl
 (defmacro game-action (command subj obj place &body body)
   `(progn (defun ,command (subject object)
             (if (and (eq *location* ',place)
@@ -242,37 +241,37 @@
             '(i cant ,command like that.)))
           (pushnew ',command *allowed-commands*)))
 
-; sets the parameter for the welded chain object
+; Sets the parameter for the welded chain object
 (defparameter *chain-welded* nil)
 
-; uses the game-action macro to weld the chain and the bucket
+; Uses the game-action macro to weld the chain and the bucket.
 (game-action weld chain bucket attic
              (if (and (have 'bucket) (not *chain-welded*))
                  (progn (setf *chain-welded* 't)
                         '(the chain is now securely welded to the bucket.))
                '(you do not have a bucket.)))
 
-; sets the combined piece using the pieces from the previous assignment
+; Sets the combined piece using the pieces from the previous assignment
 (defparameter *star-power* nil)
 
-; uses the game-action macro to combine the star pieces into one object
+; Uses the game-action macro to combine the star pieces into one object
 (game-action power starpiece1 starpiece2 attic
              (if (and (have 'starpiece1) (not *star-power*))
                  (progn (setf *star-power* 't)
                         '(the star has been formed and is giving full power.))
                '(you do not have all the pieces to the star.)))
 
-; creates the parameter for the filled bucket object
+; Creates the parameter for the filled bucket object
 (defparameter *bucket-filled* nil)
 
-;uses the game-action macro to set the bucket as a filled bucket
+; Uses the game-action macro to fill the bucket with water from the well.
 (game-action dunk bucket well garden
              (if *chain-welded* 
                  (progn (setf *bucket-filled* 't)
                         '(the bucket is now full of water))
                '(the water level is too low to reach.)))
 
-; uses the game-action macro to determine the outcome of the game.
+; Uses the game-action macro to build a new command that determines the outcome of the game.
 (game-action splash bucket wizard living-room
              (cond ((not *bucket-filled*) '(the bucket has nothing in it.))
                    ((have 'frog) '(the wizard awakens and sees that you stole his frog. 
