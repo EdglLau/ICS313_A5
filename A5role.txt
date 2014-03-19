@@ -6,3 +6,4 @@ Worked and debugged on the macros for the new object and location.
 Edgar Lau:
 
 Cyrus Wu:
+Debugged new-path macro. Fixed up some of the commments.
