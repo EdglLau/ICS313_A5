@@ -218,9 +218,9 @@
           (cond
            ((our-member ',destination *edges*)
             (pushnew '(,origin ,direction-back ,path)
-                 (cdr (assoc ',destination *edges*))))
+                 (cdr (assoc ',destination *edges*)) :test 'equal))
            (t (pushnew '(,destination
-                          (,origin ,direction-back ,path)) *edges*))))
+                          (,origin ,direction-back ,path)) *edges* :test 'equal))))
 
           ; add new location/direction/path to origin's list of edges           
         (pushnew '(,destination ,direction ,path)
