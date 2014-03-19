@@ -29,11 +29,11 @@
 (defun describe-path (edge)
   `(there is a ,(caddr edge) going ,(cadr edge) from here.))
 
-;This function describes all the options of paths from one location.
+; This function describes a locations paths going into and out of it.
 (defun describe-paths (location edges)
   (apply #'append (mapcar #'describe-path (cdr (assoc location edges)))))
 
-; This parameter gives the object to this game.
+; This parameter defines the object to this game.
 (defparameter *objects* '(whiskey bucket starpiece1 frog starpiece2 chain cake starpiece3))
 
 ; This parameter gives where the objects are in the game.
