@@ -126,7 +126,7 @@
 
 
 ;;;=========================R-E-P-L=======================;;;
-;  wizards_game part 2
+;  Wizard's World part 2
 
 ; This function allows the user to play the game. If user types quit, the game is over.
 (defun game-repl ()
@@ -135,7 +135,7 @@
             (game-print (game-eval cmd))
             (game-repl))))
 
-; This function forces uswers to put parentheses around their commands and
+; This function forces users to put parentheses around their commands and
 ; quotes in front of any function commands.
 (defun game-read ()
     (let ((cmd (read-from-string (concatenate 'string "(" (read-line) ")"))))
